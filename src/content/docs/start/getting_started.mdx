@@ -8,7 +8,7 @@ import { Aside, Badge, FileTree, Tabs, TabItem, Steps } from '@astrojs/starlight
 ## Prerequisites
 
 Before starting, make sure you have the following prerequisites:
-<Tabs>
+<Tabs syncKey="os">
     <TabItem label="Linux">
         <Steps>
             1. **Install Rust**
@@ -176,8 +176,13 @@ This will create a `ferrumc` executable in the `target/release` directory.
 
 ### Run
 
-<Tabs>
-    <TabItem label="Linux/MacOS">
+<Tabs syncKey="os">
+    <TabItem label="Linux">
+        ~~~bash
+        ./ferrumc
+        ~~~
+    </TabItem>
+    <TabItem label="macOS">
         ~~~bash
         ./ferrumc
         ~~~
@@ -206,8 +211,13 @@ You can change logging level by using ```--log=<level>```:
 
 <Aside>
     You can specify the directory to treat as the root directory (the place where the config files, data files, etc. live) by setting an environment variable `FERRUMC_ROOT` to the path of the directory.
-    <Tabs>
-        <TabItem label="Linux/MacOS">
+    <Tabs syncKey="os">
+        <TabItem label="Linux">
+            ~~~bash
+            export FERRUMC_ROOT=/home/ReCor/Documents/Code/Rust/ferrumc
+            ~~~
+        </TabItem>
+<TabItem label="macOS">
             ~~~bash
             export FERRUMC_ROOT=/home/ReCor/Documents/Code/Rust/ferrumc
             ~~~
