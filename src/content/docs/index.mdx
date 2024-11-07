@@ -7,12 +7,12 @@ hero:
   image:
     file: ../../assets/icon.png
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Get Started
+      link: /start/getting_started
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Read the docs
+      link: /start/getting_started
+      icon: document
       variant: minimal
 ---
 
@@ -21,16 +21,16 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## Next steps
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
+	<Card title="Performant" icon="rocket">
+        FerrumC is written in Rust, providing incredible performance and efficiency.
+    </Card>
 	<Card title="Add new content" icon="add-document">
 		Add Markdown or MDX files to `src/content/docs` to create new pages.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
+	<Card title="Plugins" icon="setting">
+        We have builtin support for Rust and basic JVM-based plugins.
+    </Card>
 	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+		Learn more in [the FerrumC Docs](/start/getting_started).
 	</Card>
 </CardGrid>
