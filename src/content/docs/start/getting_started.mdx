@@ -1,0 +1,226 @@
+---
+title: Getting Started
+description: Quickly get up and running with FerrumC.
+---
+
+import { Aside, Badge, FileTree, Tabs, TabItem, Steps } from '@astrojs/starlight/components';
+
+## Prerequisites
+
+Before starting, make sure you have the following prerequisites:
+<Tabs>
+    <TabItem label="Linux">
+        <Steps>
+            1. **Install Rust**
+
+                Rust can be installed via [`rustup`](https://www.rust-lang.org/tools/install), the Rust toolchain installer. Open a terminal and run:
+
+                ~~~bash
+                curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+                ~~~
+
+                Follow the on-screen instructions to complete the installation. Once installed, reload your shell:
+
+                ~~~bash
+                source $HOME/.cargo/env
+                ~~~
+
+                Verify the installation:
+
+                ~~~bash
+                rustc --version
+                cargo --version
+                ~~~
+
+            2. **Install Git**
+
+                On Debian/Ubuntu-based distributions:
+
+                ~~~bash
+                sudo apt update
+                sudo apt install git
+                ~~~
+
+                On Fedora-based distributions:
+
+                ~~~bash
+                sudo dnf install git
+                ~~~
+
+                Verify the installation:
+
+                ~~~bash
+                git --version
+                ~~~
+        </Steps>
+    </TabItem>
+
+    <TabItem label="macOS">
+        <Steps>
+            1. **Install Rust**
+
+                Rust can be installed via [`rustup`](https://www.rust-lang.org/tools/install), the Rust toolchain installer. Open a terminal and run:
+
+                ~~~bash
+                curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+                ~~~
+
+                Follow the on-screen instructions to complete the installation. Once installed, reload your shell:
+
+                ~~~bash
+                source $HOME/.cargo/env
+                ~~~
+
+                Verify the installation:
+
+                ~~~bash
+                rustc --version
+                cargo --version
+                ~~~
+
+            2. **Install Git**
+
+                If you have Homebrew installed, you can easily install Git:
+
+                ~~~bash
+                brew install git
+                ~~~
+
+                Verify the installation:
+
+                ~~~bash
+                git --version
+                ~~~
+        </Steps>
+    </TabItem>
+
+    <TabItem label="Windows">
+        <Steps>
+            1. **Install Rust**
+
+                1. Download the `rustup-init.exe` installer from [rust-lang.org](https://forge.rust-lang.org/infra/other-installation-methods.html#other-ways-to-install-rustup).
+                2. Run the installer and follow the prompts. Choose the default installation unless you need specific settings.
+
+                After installation, open a new Command Prompt or PowerShell window and verify Rust installation:
+
+                ~~~powershell
+                rustc --version
+                cargo --version
+                ~~~
+
+            2. **Install Git**
+
+                Download and install Git from [git-scm.com](https://git-scm.com/). Follow the installer steps, choosing default options unless you need specific configurations.
+
+                Verify the Git installation:
+
+                ~~~powershell
+                git --version
+                ~~~
+        </Steps>
+    </TabItem>
+</Tabs>
+
+---
+
+## Installation
+
+### Build
+<Steps>
+1. **Clone the Repository**: Begin by cloning the FerruMC repository to your local machine:
+    ~~~bash
+    git clone https://github.com/your-username/ferrumc.git
+    cd ferrumc
+   ~~~
+
+2. **Build FerruMC**: Use Cargo (Rust's package manager and build system) to build FerruMC:
+    ~~~bash
+    cargo build --release
+   ~~~
+</Steps>
+This will create a `ferrumc` executable in the `target/release` directory.
+
+### Pre-Run
+<Steps>
+    1. **Move the FerrumC binary to your desired server directory**
+
+    2. <Badge text="Optional" variant="note" /> **Generate a config file**
+        ~~~bash
+            ./ferrumc --setup
+        ~~~
+
+    3. **Import an existing world**
+
+        Place the region files (.mca) in the folder named import then run
+        ~~~bash
+        ./ferrumc --import
+        ~~~
+        The location of these files in minecraft is explained [here](https://minecraft.wiki/w/Region_file_format#Location)
+        <FileTree>
+
+            - import region files in here
+                - ...
+            - config.toml
+            - ferrumc
+
+        </FileTree>
+        <Aside>
+            If you want to modify batch size (default 150), you can use
+            ~~~bash
+            ./ferrumc --import --batch_size=<num>
+            ~~~
+            Basically the number of chunks to import at once, higher => faster but more CPU intensive.
+            Max is 1024, since that's the max number of chunks in a region(.mca) file.
+        </Aside>
+</Steps>
+
+### Run
+
+<Tabs>
+    <TabItem label="Linux/MacOS">
+        ~~~bash
+        ./ferrumc
+        ~~~
+    </TabItem>
+    <TabItem label="Windows">
+        ~~~bash
+        .\ferrumc.exe
+        ~~~
+    </TabItem>
+</Tabs>
+
+You can change logging level by using ```--log=<level>```:
+~~~bash
+./ferrumc --log=info #for info level logging
+~~~
+
+###### Logging values:
+    - trace (Extremely verbose)
+    - debug (Default, Slightly verbose, used for debugging)
+    - info (Recommended, useful information)
+    - warn (Only warnings)
+    - error (Only errors)
+
+
+
+
+<Aside>
+    You can specify the directory to treat as the root directory (the place where the config files, data files, etc. live) by setting an environment variable `FERRUMC_ROOT` to the path of the directory.
+    <Tabs>
+        <TabItem label="Linux/MacOS">
+            ~~~bash
+            export FERRUMC_ROOT=/home/ReCor/Documents/Code/Rust/ferrumc
+            ~~~
+        </TabItem>
+        <TabItem label="Windows">
+            ~~~cmd
+            set FERRUMC_ROOT=C:\Users\ReCor\Documents\Code\Rust\ferrumc
+            ~~~
+        </TabItem>
+    </Tabs>
+    This is useful if you can't move the place the binary is executed from (`cargo run` for example).
+</Aside>
+
+
+
+---
